@@ -37,6 +37,11 @@ export default function App() {
   };
 
   const addNewCountable = (name) => {
+    if (!name.trim()) {
+      Alert.alert("Enter a name!");
+      return;
+    }
+
     if (countables.some((countable) => countable.name === name)) {
       Alert.alert("Error", "This name already exists!");
       return;

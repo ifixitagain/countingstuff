@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
+  Text,
 } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -34,7 +35,7 @@ export default function App() {
     const newState = [...countables];
     newState[index].count += amount;
 
-    newState.sort((a, b) => b.count - a.count); //here
+    newState.sort((a, b) => b.count - a.count);
 
     setCountables(newState);
   };
@@ -52,7 +53,7 @@ export default function App() {
 
     const newState = [...countables, { name, count: 0 }];
 
-    newState.sort((a, b) => b.count - a.count); //here
+    newState.sort((a, b) => b.count - a.count);
 
     setCountables(newState);
     setName("");
@@ -72,7 +73,8 @@ export default function App() {
           style={styles.container}
         >
           <ScrollView>
-            {countables.map((countable, index) => (
+            {countables.length > 0 ? (
+            countables.map((countable, index) => (
               <CountableRow
                 countable={countable}
                 key={countable.name}
@@ -80,7 +82,10 @@ export default function App() {
                 index={index}
                 removeCountable={removeCountable}
               />
-            ))}
+            ))
+            ) : (
+              <Text style={styles.emptyMessage}>The list is empty!</Text>
+            )}
           </ScrollView>
           <AddRow addNewCountable={addNewCountable} />
         </KeyboardAvoidingView>
@@ -94,5 +99,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+  },
+  emptyMessage: {
+    textAlign: "center",
+    fontSize: 18,
+    marginTop: 20,
+    color: "gray",
   },
 });

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, TextInput } from "react-native";
+import { View, TextInput, StyleSheet } from "react-native";
 
 import { CountableButton } from "./CountableButton";
 import { CommonStyles } from "../styles/CommonStyles";
@@ -9,7 +9,11 @@ export const AddRow = ({ addNewCountable }) => {
 
   return (
     <View style={CommonStyles.row}>
-      <TextInput placeholder="Enter name" onChangeText={setName} />
+      <TextInput
+        style={styles.input}
+        placeholder="Enter name"
+        onChangeText={setName}
+      />
       <CountableButton
         label="Add"
         submit={() => {
@@ -19,3 +23,16 @@ export const AddRow = ({ addNewCountable }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  input: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    padding: 8,
+    fontSize: 16,
+    marginRight: 10,
+  },
+});
+

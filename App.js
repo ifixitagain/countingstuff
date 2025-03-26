@@ -36,7 +36,7 @@ export default function App() {
     setCountables(newState);
   };
 
-  const addNewCountable = (name) => {
+  const addNewCountable = (name, setName) => {
     if (!name.trim()) {
       Alert.alert("Enter a name!");
       return;
@@ -46,8 +46,11 @@ export default function App() {
       Alert.alert("Error", "This name already exists!");
       return;
     }
+
     const newState = [...countables, { name, count: 0 }];
     setCountables(newState);
+
+    setName("");
   };
 
   const removeCountable = (index) => {

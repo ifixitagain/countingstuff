@@ -13,11 +13,12 @@ export const AddRow = ({ addNewCountable }) => {
         style={styles.input}
         placeholder="Enter name"
         onChangeText={setName}
+        value={name}
       />
       <CountableButton
         label="Add"
         submit={() => {
-          addNewCountable(name);
+          addNewCountable(name, setName);
         }}
       />
     </View>

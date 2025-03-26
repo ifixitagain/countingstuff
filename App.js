@@ -5,6 +5,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
+  Alert,
 } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -36,6 +37,10 @@ export default function App() {
   };
 
   const addNewCountable = (name) => {
+    if (countables.some((countable) => countable.name === name)) {
+      Alert.alert("Error", "This name already exists!");
+      return;
+    }
     const newState = [...countables, { name, count: 0 }];
     setCountables(newState);
   };

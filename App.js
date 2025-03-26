@@ -52,7 +52,6 @@ export default function App() {
     }
 
     const newState = [...countables, { name, count: 0 }];
-
     newState.sort((a, b) => b.count - a.count);
 
     setCountables(newState);
@@ -65,6 +64,13 @@ export default function App() {
     setCountables(newState);
   };
 
+  const editCountableName = (index, newName) => {
+    const newState = [...countables];
+    newState[index].name = newName;
+    newState.sort((a, b) => b.count - a.count);
+    setCountables(newState);
+  };
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
@@ -74,15 +80,16 @@ export default function App() {
         >
           <ScrollView>
             {countables.length > 0 ? (
-            countables.map((countable, index) => (
-              <CountableRow
-                countable={countable}
-                key={countable.name}
-                changeCount={changeCount}
-                index={index}
-                removeCountable={removeCountable}
-              />
-            ))
+              countables.map((countable, index) => (
+                <CountableRow
+                  countable={countable}
+                  key={countable.name}
+                  changeCount={changeCount}
+                  index={index}
+                  removeCountable={removeCountable}
+                  editCountableName={editCountableName}
+                />
+              ))
             ) : (
               <Text style={styles.emptyMessage}>The list is empty!</Text>
             )}

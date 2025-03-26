@@ -33,6 +33,9 @@ export default function App() {
   const changeCount = (amount, index) => {
     const newState = [...countables];
     newState[index].count += amount;
+
+    newState.sort((a, b) => b.count - a.count); //here
+
     setCountables(newState);
   };
 
@@ -48,8 +51,10 @@ export default function App() {
     }
 
     const newState = [...countables, { name, count: 0 }];
-    setCountables(newState);
 
+    newState.sort((a, b) => b.count - a.count); //here
+
+    setCountables(newState);
     setName("");
   };
 

@@ -45,6 +45,12 @@ export default function App() {
     setCountables(newState);
   };
 
+  const removeCountable = (index) => {
+    const newState = [...countables];
+    newState.splice(index, 1);
+    setCountables(newState);
+  };
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
@@ -59,6 +65,7 @@ export default function App() {
                 key={countable.name}
                 changeCount={changeCount}
                 index={index}
+                removeCountable={removeCountable}
               />
             ))}
           </ScrollView>
